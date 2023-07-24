@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.in28minutes.superstore.dao.CartDao">
+
+    <resultMap type="CartDto" id="result">
+        <result column="CARTID" property="cartId"/>
+        <result column="PRODUCTID" property="productId"/>
+        <result column="USERID" property="userId"/>
+        <result column="TOTAL" property="total"/>
+    </resultMap>
+
+    <select id="getAllCart" parameterType="QueryGetCartByUserId" resultType="CartDto" resultMap="result" statementType="CALLABLE" >
+        {call get_all_cart(#{id})}
+    </select>
+
+</mapper>

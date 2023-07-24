@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.in28minutes.superstore.dao.UserDao">
+
+    <resultMap type="UserDto" id="result">
+        <result column="USERID" property="userId"/>
+        <result column="NAME" property="name"/>
+        <result column="EMAIL" property="email"/>
+        <result column="PASSWORD" property="password"/>
+    </resultMap>
+
+    <select id="getUserByName" parameterType="ReqByName" resultType="UserDto" resultMap="result" statementType="CALLABLE" >
+        {call get_user(#{name})}
+    </select>
+
+    <insert id="insertUser" statementType="CALLABLE">
+        {CALL insert_user(
+        #{in.pName,mode=IN,jdbcType=VARCHAR,javaType=java.lang.String},
+        #{in.pEmail,mode=IN,jdbcType=VARCHAR,javaType=java.lang.String},
+        #{in.pPassword,mode=IN,jdbcType=VARCHAR,javaType=java.lang.String},
+        #{out.pOut,mode=OUT,jdbcType=BIGINT,javaType=java.lang.Long}
+        )}
+    </insert>
+
+</mapper>
