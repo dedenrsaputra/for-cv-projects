@@ -2,6 +2,7 @@ package com.in28minutes.superstore.service.impl;
 
 import com.in28minutes.superstore.dto.CartDto;
 import com.in28minutes.superstore.dto.UserDto;
+import com.in28minutes.superstore.dto.req.ReqParamCart;
 import com.in28minutes.superstore.repository.CartRepo;
 import com.in28minutes.superstore.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,5 +17,10 @@ public class CartSvcImpl implements CartService {
     @Override
     public List<CartDto> getAllCart(long id) {
         return cartRepo.getAllCart(id);
+    }
+
+    @Override
+    public String addToCart(ReqParamCart.ReqAddToCart param) {
+        return cartRepo.addToCart(param);
     }
 }

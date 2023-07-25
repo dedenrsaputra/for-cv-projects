@@ -15,4 +15,11 @@
         {call get_all_cart(#{id})}
     </select>
 
+    <insert id="addProductToCart" statementType="CALLABLE">
+        {CALL insert_product_to_cart(
+        #{in.pUserId,mode=IN,jdbcType=BIGINT,javaType=java.lang.Long},
+        #{in.pProductId,mode=IN,jdbcType=BIGINT,javaType=java.lang.Long},
+        #{out.pOut,mode=OUT,jdbcType=VARCHAR,javaType=java.lang.String}
+        )}
+    </insert>
 </mapper>
